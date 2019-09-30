@@ -143,46 +143,8 @@
     </div><!--/header-bottom-->
 </header><!--/header-->
 
-<section id="slider"><!--Slider-->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
-                     <ol class="carousel-indicators">
-                         @foreach($sliderImage as $sliderImages)
-                         <li data-target="#slider-carousel" data-slide-to="{{$loop->index}}" class="{{$loop->first ?'active':''}}"></li>
-                         @endforeach
-                     </ol>
-                    <div class="carousel-inner">
-                        <div class="item active">
-                             <div class="col-sm-6">
-                                 <h1><span>1</span>-SHOPPER</h1>
-                                <h2>Free E-Commerce Template</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                    <div class="image">
-                                        @foreach($sliderImage as $sliderImages)
-                                        <img src="storage/slider/{{$sliderImages->slider_image}} " style="width: 200px; height:570px;"  class="pricing" alt="" />
-                                        @endforeach
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                     <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section><!--/Slider-->
-
+<!--/slider -area -->
+@include('Frontend.Slider.slide')
 <section>
     <div class="container">
         <div class="row">
@@ -190,26 +152,7 @@
                 <div class="left-sidebar">
                     <h2>Category</h2>
                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-{{--                        <div class="panel panel-default">--}}
-{{--                            <div class="panel-heading">--}}
-{{--                                <h4 class="panel-title">--}}
 
-{{--                                    <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">--}}
-{{--                                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>--}}
-{{--                                       <li></li>--}}
-{{--                                    </a>--}}
-
-{{--                                </h4>--}}
-{{--                            </div>--}}
-{{--                           --}}
-{{--                            <div id="sportswear" class="panel-collapse collapse">--}}
-{{--                                <div class="panel-body">--}}
-{{--                                    <ul>--}}
-
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                         <?php
                         $categoryLists=DB::table('category')
                             ->where('status',1)
@@ -218,9 +161,9 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 @foreach($categoryLists as $categoryList)
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li><a href="{{URL::to('/showproduct_by_category/'.$categoryList->category_id)}}"> <span class="pull-right"></span>{{ $categoryList->category_name }}</a></li>
-                                    </ul>
+
+                                        <h5><a href="{{URL::to('/showproduct_by_category/'.$categoryList->category_id)}}"> <span class="pull-right"></span>{{ $categoryList->category_name }}</a></h5>
+
                                  @endforeach
                             </div>
                         </div>
@@ -264,9 +207,7 @@
 
                             ?>
                             @foreach($Brands as $Brand)
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#"> <span class="pull-right">({{$Brand->status}})</span>{{$Brand->menufacture_name}}</a></li>
-                            </ul>
+                                <h5><a href="{{URL::to('/showproduct_by_menufacture/'.$Brand->menufacture_id)}}"> <span class="pull-right">({{$Brand->status}})</span>{{$Brand->menufacture_name}}</a></h5>
                             @endforeach
                         </div>
                     </div><!--/brands_products-->

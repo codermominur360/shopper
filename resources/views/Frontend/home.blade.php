@@ -1,4 +1,5 @@
 @extends('Frontend.Layout.app')
+
 @section('content')
     <div class="features_items"><!--features_items-->
         <h2 class="title text-center">Features Items</h2>
@@ -11,20 +12,20 @@
                         <img src="{{asset('fontend/images/home/product1.jpg')}}" alt="" />
                         <h2>{{$v_productShow->product_price}}</h2>
                         <p>{{$v_productShow->product_name}}</p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <a href="{{URL::to('/productdetails/'.$v_productShow->product_id)}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                     </div>
                     <div class="product-overlay">
                         <div class="overlay-content">
                             <h2>{{$v_productShow->product_price}}</h2>
                             <p>{{$v_productShow->product_name}}</p>
-                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            <a href="{{URL::to('/productdetails/'.$v_productShow->product_id)}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                         </div>
                     </div>
                 </div>
                 <div class="choose">
                     <ul class="nav nav-pills nav-justified">
-                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                        <li><a href="#"><i class="fa fa-plus-square"></i>Brand</a></li>
+                        <li><a href="{{URL::to('/productdetails/'.$v_productShow->product_id)}}"><i class="fa fa-plus-square"></i>Product Details </a></li>
                     </ul>
                 </div>
             </div>

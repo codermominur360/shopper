@@ -4,19 +4,19 @@
         <h2 class="title text-center"></h2>
         <div class="col-sm-4">
 
-            @foreach($show_product_by_category as $show_product_by_categories )
+            @foreach($show_product_by_menufacture as $show_product_by_menufactures )
                 <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
                             <img src="{{asset('fontend/images/home/product1.jpg')}}" alt="" />
-                            <h2>{{$show_product_by_categories->product_price}}</h2>
-                            <p>{{$show_product_by_categories->product_name}}</p>
+                            <h2>{{$show_product_by_menufactures->product_price}}</h2>
+                            <p>{{$show_product_by_menufactures->product_name}}</p>
                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                         </div>
                         <div class="product-overlay">
                             <div class="overlay-content">
-                                <h2>{{$show_product_by_categories->product_price}}</h2>
-                                <p>{{$show_product_by_categories->product_name}}</p>
+                                <h2>{{$show_product_by_menufactures->product_price}}</h2>
+                                <p>{{$show_product_by_menufactures->product_name}}</p>
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                             </div>
                         </div>

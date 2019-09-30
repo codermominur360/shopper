@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/* todo: Testing purpese Route*/
+//Route::get('/porductshowid',function (){
+//    return view('Frontend.Pages.add_to_cart');
+//});
 /*
 Route
  *FRONTEND Controller
@@ -18,7 +21,11 @@ Route
  * */
 Route::get('/','frontendController@index');
 Route::get('/showproduct_by_category/{category_id}','frontendController@showproduct_by_category');
+Route::get('/showproduct_by_menufacture/{menufacture_id}','frontendController@showproduct_by_menufacture');
+Route::get('/productdetails/{product_id}','frontendController@productDetails');
+
 Route::post('subcriber','subcriberController@subcriber');
+Route::post('/add_to_cart','cartController@addToCart');
 
 
 
