@@ -11,9 +11,8 @@
 |
 */
 /* todo: Testing purpese Route*/
-//Route::get('/porductshowid',function (){
-//    return view('Frontend.Pages.add_to_cart');
-//});
+
+
 /*
 Route
  *FRONTEND Controller
@@ -25,9 +24,27 @@ Route::get('/showproduct_by_menufacture/{menufacture_id}','frontendController@sh
 Route::get('/productdetails/{product_id}','frontendController@productDetails');
 
 Route::post('subcriber','subcriberController@subcriber');
-Route::post('/add_to_cart','cartController@addToCart');
 
+Route::post('addToCart','cartController@addToCart');
 
+/*
+ * todo: Check Out Controller Route */
+Route::get('login_checkout','CheckoutController@loginCheckout');
+Route::post('customer_registration','CheckoutController@customer_registration');
+Route::get('/checkout','CheckoutController@checkout');
+Route::post('/save_shipping_details','CheckoutController@save_shipping_details');
+
+/*todo: Customer login and logout system */
+Route::get('customer_logout','CheckoutController@customer_logout');
+Route::post('customer_login','CheckoutController@customer_login');
+
+/*
+ * todo: Payment system Route  */
+Route::get('payment','CheckoutController@payment');
+Route::post('order_place','CheckoutController@order_place');
+
+/*
+ * */
 
 /*
  *todo: BACKEND Controller

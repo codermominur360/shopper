@@ -45,14 +45,14 @@
                     <p>Prodcut ID:{{ ($productDetials->product_id)*(256512) }}momin</p>
                     <img src="images/product-details/rating.png" alt="" />
                     <span>
-									<span>BD-{{$productDetials->	product_price}}</span>
+									<span>BD-{{$productDetials->product_price}}</span>
 									<label>color:{{$productDetials-> product_color}}</label>
 
-									<form action="/add_to_cart" method="post">
+									<form action="{{url('addToCart')}}" method="post">
                                      @csrf
                                         <input  name="qty" type="text" value="3"/>
-                                        <input type="hidden" name="product_id" value="{{($productDetials->product_id)}}"/>
-                                        <button type="submit" class="btn btn-fefault cart">
+                                        <input type="hidden" name="product_id" id="product_id" value="{{($productDetials->product_id)}}"/>
+                                        <button type="submit" class="btn btn-default cart" id="addCart">
                                             <i class="fa fa-shopping-cart"></i>
                                             Add to cart
                                         </button>
@@ -351,4 +351,20 @@
         </div><!--/recommended_items-->
 
     </div>
+    <?php
+     $pro_conut=DB::table('product')
+        ->where('status',1)
+        ->get();
+    ?>
+@endsection
+
+@section('jsScript')
+<script>
+    $(document).ready(function() {
+            $('#addCart').click(function() {
+                var product_id=$('#product_id').val();
+                alert(product_id);
+            });
+    });
+</script>
 @endsection

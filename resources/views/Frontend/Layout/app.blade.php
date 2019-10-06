@@ -22,6 +22,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('fontend/images/ico/apple-touch-icon-114-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('fontend/images/ico/apple-touch-icon-72-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset('fontend/images/ico/apple-touch-icon-57-precomposed.png')}}">
+    @yield('cssScript');
 </head><!--/head-->
 
 <body>
@@ -88,9 +89,25 @@
                         <ul class="nav navbar-nav">
                             <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+
+                            <?php
+                            $customer_id=Session::get('customer_id');
+                            $shipping_id=Session::get('shipping_id');
+                            ?>
+                            @if($customer_id!=null && $shipping_id==null)
+                            <li><a href="{{url('checkout')}}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                            @elseif($customer_id!=null && $shipping_id!==null)
+                            <li><a href="{{url('payment')}}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                            @else
+                            <li><a href="{{url('login_checkout')}}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                            @endif
+                            <li><a href="{{url('addToCart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            @if($customer_id!=null)
+                            <li><a href="{{url('/customer_logout')}}"><i class="fa fa-lock"></i> logour</a></li>
+                            @else
+                            <li><a href="{{url('login_checkout')}}"><i class="fa fa-lock"></i> login</a></li>
+                            @endif
+
                         </ul>
                     </div>
                 </div>
@@ -363,5 +380,6 @@
 <script src="{{asset('fontend/js/price-range.js')}}"></script>
 <script src="{{asset('fontend/js/jquery.prettyPhoto.js')}}"></script>
 <script src="{{asset('fontend/js/main.js')}}"></script>
+@yield('jsScript');
 </body>
 </html>

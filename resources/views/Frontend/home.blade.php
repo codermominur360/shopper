@@ -1,10 +1,33 @@
 @extends('Frontend.Layout.app')
+@section('jsScript')
+    <script>
+        $(document).ready(function() {
+            <?php $maxProduct= count($productShow); ?>
+             @for($i=0; $i<$maxProduct; $i++)
+                $('#cartBtn<?php echo $i; ?>').click(function() {
+                 var product_idc<?php echo $i; ?> = $('#product_id<?php echo $i; ?>').value();
 
+                    $.ajax
+                     ({
+                        type:'get',
+                         url:'<?php echo url('/cartAdd')?>/' + product_idc<?php echo $i; ?> ,
+                         success:function(){
+                             alert('done')
+                         }
+                     });
+                });
+            @endfor
+        });
+    </script>
+@endsection
 @section('content')
+
     <div class="features_items"><!--features_items-->
         <h2 class="title text-center">Features Items</h2>
+        <input type="hidden" value="{{$productShow}}">
+        <?php $Product=0; ?>
         @foreach($productShow as $v_productShow )
-
+            <input type="hidden" id="product_id<?php echo $Product; ?>" value="{{$v_productShow->product_id}}">
         <div class="col-sm-4">
              <div class="product-image-wrapper">
                 <div class="single-products">
@@ -12,15 +35,17 @@
                         <img src="{{asset('fontend/images/home/product1.jpg')}}" alt="" />
                         <h2>{{$v_productShow->product_price}}</h2>
                         <p>{{$v_productShow->product_name}}</p>
-                        <a href="{{URL::to('/productdetails/'.$v_productShow->product_id)}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <button class="btn btn-info add_to_cart" id="cartBtn<?php echo $Product; ?>">
+                         <a href="{{URL::to('/productdetails/'.$v_productShow->product_id)}}" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        </button>
                     </div>
-                    <div class="product-overlay">
-                        <div class="overlay-content">
-                            <h2>{{$v_productShow->product_price}}</h2>
-                            <p>{{$v_productShow->product_name}}</p>
-                            <a href="{{URL::to('/productdetails/'.$v_productShow->product_id)}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                        </div>
-                    </div>
+{{--                    <div class="product-overlay">--}}
+{{--                        <div class="overlay-content">--}}
+{{--                            <h2>{{$v_productShow->product_price}}</h2>--}}
+{{--                            <p>{{$v_productShow->product_name}}</p>--}}
+{{--                            <a href="{{URL::to('/productdetails/'.$v_productShow->product_id)}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
                 <div class="choose">
                     <ul class="nav nav-pills nav-justified">
@@ -30,6 +55,7 @@
                 </div>
             </div>
         </div>
+            <?php $Product++ ?>
         @endforeach
 
     </div><!--features_items-->

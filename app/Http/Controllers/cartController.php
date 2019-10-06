@@ -4,16 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Redirect;
+
+
 class cartController extends Controller
 {
-    public function addToCart(Request $request)
+    public function addToCart()
     {
-        $productdet=$request->product_id;
-            $productinfo=DB::table('product')
-                ->where('product_id',$productdet)
-                ->first();
-            echo '<pre>';
-            print_r($productinfo);
-            echo '</pre>';
+        return view('Frontend.Pages.add_to_cart');
     }
 }
